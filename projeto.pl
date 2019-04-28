@@ -135,3 +135,58 @@ aplica_R2_fila(Fila, N_Fila) :- aplica_R2_fila_conta(Fila, _, Uns),
 
 aplica_R1_R2_fila(Fila, N_Fila) :- aplica_R1_fila(Fila, Fila_R1),
     aplica_R2_fila(Fila_R1, N_Fila).
+
+%===========================
+%
+%===========================
+aplica_R1_R2_linhas([], []).
+aplica_R1_R2_linhas([ X | R ], N_Puz) :- 
+    aplica_R1_R2_linhas(R, Temp_Puz),
+    aplica_R1_R2_fila(X, N_Linha),
+    N_Puz = [N_Linha|Temp_Puz].
+
+aplica_R1_R2_puzzle(Puz, N_Puz) :- 
+    aplica_R1_R2_linhas(Puz, N_Puz_Linha),
+    mat_transposta(N_Puz_Linha, Puz_Trans),
+    aplica_R1_R2_linhas(Puz_Trans, N_Puz_Coluna_Trans),
+    mat_transposta(N_Puz_Coluna_Trans, N_Puz).
+
+%===========================
+%
+%===========================
+
+inicializa(Puz, N_Puz) :-
+    aplica_R1_R2_puzzle(Puz, N_Puz),
+    Puz == N_Puz, !.
+
+inicializa(Puz, N_Puz) :-
+    aplica_R1_R2_puzzle(Puz, N_Puz_R1_R2),
+    inicializa(N_Puz_R1_R2, N_Puz).
+
+
+%===========================
+%
+%===========================
+
+verifica_R3_linha(_, []).
+
+verifica_R3_linha(Linha1, [ Linha2 | _ ]) :-
+    Linha1 == Linha2, !, fail.
+
+verifica_R3_linha(Linha1, [ _ | R ]) :- !,
+    verifica_R3_linha(Linha1, R).
+
+verifica_R3_todas_linhas([]).
+
+verifica_R3_todas_linhas([ X | R ]) :- 
+    verifica_R3_linha(X, R), !,
+    verifica_R3_todas_linhas(R).
+
+verifica_R3(Puz) :-
+    verifica_R3_todas_linhas(Puz),
+    mat_transposta(Puz, Puz_Trans),
+    verifica_R3_todas_linhas(Puz_Trans).Puz = [[0,1,0,1],
+    [0,1,0,1],
+    [1,_,_,_],
+    [1,0,_,_]], verifica_R3(Puz).
+    
