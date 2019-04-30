@@ -1,3 +1,5 @@
+# LP Prolog Project
+
 ## Simple Tests
 
 Puz = [[0,_,_,1],[0,_,_,1],[1,_,_,_],[1,0,_,_]], aplica_R1_R2_puzzle(Puz, N_Puz).
@@ -39,13 +41,13 @@ A = [
     [_,_,_,_,0,0],
     [_,1,_,_,_,_],
     [0,_,0,_,_,_]
-    ], inicializa(A, B).
+    ], inicializa(A, B), escreve_Puzzle(B).
 
 Puz = [
-    [1,0,1,1,0,1],
-    [0,_,1,_,0,_],
-    [0,_,0,_,_,_],
-    [1,0,_,1,_,0],
+    [_,0,1,1,0,1],
+    [_,_,1,_,0,_],
+    [_,_,0,0,_,_],
+    [_,0,_,1,_,0],
     [_,1,_,0,_,1],
     [_,1,_,0,_,_]
-    ], resolve(Puz, N_Puz).
+    ], resolve(Puz, N_Puz), escreve_Puzzle(N_Puz).
