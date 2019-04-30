@@ -47,7 +47,7 @@ aplica_R1_triplo_aux(_, X1, X2) :-
 % N_Triplo e a lista resultante de aplicar a regra 1 ao triplo Triplo.
 % Se Triplo tiver dois zeros/uns e uma variavel, esta deve ser
 % preenchida com um/zero. 
-% Se o Triplo tiver três zeros (uns), o predicado deve devolver false.
+% Se o Triplo tiver tres zeros (uns), o predicado deve devolver false.
 % param:
 % Triplo - fila a aplicar a regra
 % return:
